@@ -1,7 +1,29 @@
+import { useEffect, useState } from "react"
 
 
 
 export default function Skills(){
+    const [Isvisible, setIsVisible] = useState(false)
+    const [animated, setAnimated] = useState({})
+    
+    useEffect(()=>{
+        const obserber = new IntersectionObserver(([entry]) => {
+            if(entry.isIntersecting){
+                setIsVisible(true)
+                skills.forEach((skill,index) =>{
+                    setTimeout(()=>{
+                        setAnimated((prev)=>({
+                            ...prev,[skill.name] : skill.level
+                        }))
+                    },index * 200)
+                },{threshold : 0.3})
+            }
+        })
+        const element = document.getElementById('skills')
+        if(element) obserber.observe(element)
+            return ()=> obserber.disconnect()
+    },[])
+
    const skills = [
     { name : 'HTML,CSS,JS', level: 80},
     {name: 'TypeScript', level: 55},
@@ -45,7 +67,7 @@ export default function Skills(){
             <div className="container mx-auto px-6 relative z-10">
                 <div className="grid lg:grid-cols-2 gap-16">
                     {/*left education */}
-                    <div className={`transition-all duration-1000`} >
+                    <div className={`transition-all duration-1000 ${Isvisible ? "opacity-100 translate-x-0": "opacity-0 -translate-x-10"}`} >
                         <div className="mb-12">
                             <p className="text-green-400 font-semibold text-lg mb-4">
                                 Qualification
@@ -56,9 +78,13 @@ export default function Skills(){
                         </div>
                         <div className="space-y-8">
                             {Education.map((edu,index)=>{
-                                return <div className={`border-l-2 border-green-400 pl-6
-                                group transition-all duration-1000 `} key={index}>
-                                    <div className="text-green-600 text-sm text-semibold 
+                                return (
+                                <div className={`border-l-2 border-green-400 pl-6
+                                group transition-all duration-1000
+                                ${Isvisible ? "opacity-100 translate-x-0": "opacity-0 -translate-x-10"} `} 
+                                key={index} style={{transitionDelay: `${index * 150}ms`}}>
+                                    <div className={`border-l-2 -left-2 top-0 w-4 h-4 bg-green-500 rounded-full group-hover:scale-125 transition-all duration-300`}></div>
+                                    <div className="text-green-400 text-sm text-semibold 
                                     mb-2 group-hover:text-green-300 transition-all duration-300">
                                         {edu.year}
                                     </div>
@@ -66,7 +92,7 @@ export default function Skills(){
                                     transition-all duration-200">
                                         {edu.title}
                                     </h3>
-                                    <p className="text-gray mb-2 group-hover:text-gray-300
+                                    <p className="text-gray-400 mb-2 group-hover:text-gray-300
                                     transition-all duration-200">
                                         {edu.institution}
                                     </p>
@@ -75,11 +101,12 @@ export default function Skills(){
                                         {edu.description}
                                     </p>
                                 </div>
+                                )
                             })}
                         </div>
                     </div>
                     {/* right progress */}
-                    <div className={`transition-all duration-1000 delay-300`}>
+                    <div className={`transition-all duration-1000 delay-300 ${Isvisible ? "opacity-100 translate-x-0": "opacity-0 translate-x-10"}`}>
                         <div className="mb-12">
                             <p className="text-green-400 font-semibold text-lg mb-4">
                                Expert
@@ -89,7 +116,29 @@ export default function Skills(){
                             </p>
                         </div>
                         <div className="space-y-6">
-                            {/* I will use logic */}
+                            {skills.map((skill,index) =>{
+                                return (
+                                    <div key={index} className={`space-y-2 transition-all duration-300`}>
+                                        <div className="flex justify-between items-center">
+                                            <span className="text-white font-medium group-hover:text-green-400
+                                            transition-all duration-300">
+                                                {skill.name}
+                                            </span>
+                                            <span className="text-green-300
+                                            font-semibold ">
+                                                {skill.level}%
+                                            </span>
+                                        </div>
+                                        <div className="w-full bg-slate-700 rounded-full h-2 overflow-hidden">
+                                            <div className="bg-gradient-to-r from-green-500 to-green-400 h-2 rounded-full
+                                            transition-all duration-1000 ease-out relative" style={{width: `${animated[skill.name] || 0}%`}}>
+                                                <div className="absolute inset-0 bg-white/20 "></div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                )
+                            })}
                         </div>
                     </div>
                 </div>

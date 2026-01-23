@@ -1,10 +1,26 @@
-import { Github, Linkedin, Mail, MapPin, Phone, X } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, Phone, Send, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
 
 
 export default function Contact(){
+   const [isVisible, setIsVisible] = useState(false)
+   useEffect(() =>{
+    const observer = new IntersectionObserver(
+        ([entry]) =>{
+            if(entry.intersectionRatio){
+                setIsVisible(true)
+            }
+        },{threshold : 0.3}
+    )
+    const element = document.getElementById('contact')
+    if(element) observer.observe(element)
+        return ()=> observer.disconnect()
+   },[])
+
+
     return (
-        <section className="">
+        <section id="contact" className="py-24 bg-slate-800 relative overflow-hidden">
             {/* Background Elemeent */}
             <div className="absolute inset-0">
                 <div className="absolute top-20 w-72 h-72 bg-green-600/10 rounded-full
@@ -15,7 +31,8 @@ export default function Contact(){
                 w-full h-full bg-gradient-to-r from-transparent via-green-600/5 to-transparent"></div>
             </div>
             <div className="container mx-auto px-6 relative z-10">
-                <div className={`text-center mb-16 transition-all duration-1000`}>
+                <div className={`text-center mb-16 transition-all duration-1000
+                 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                     <p className="text-green-400 font-semibold text-lg mb-4">
                         Get in touch
                     </p>
@@ -27,7 +44,8 @@ export default function Contact(){
                     </p>
                 </div>
                 <div className="grid lg:grid-cols-2 gap-16">
-                    <div className="space-y-8 transition-all duration-1000">
+                    <div className={`space-y-8 transition-all duration-1000
+                        ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                         <h3 className="text-2xl font-bold text-white mb-6">
                             Contact Information
                         </h3>
@@ -57,7 +75,8 @@ export default function Contact(){
                                 return (
                                     <div key={index} className={`flex items-center gap-4 p-4 bg-slate-900 
                                     rounded-lg hover:bg-slate-700 transition-all duration-300 border border-slate-700
-                                    hover:border-green-500 group cursor-pointer transform hover:scale-105 `} style={{transitionDelay : `${index * 200 + 300}ms`}}>
+                                    hover:border-green-500 group cursor-pointer transform hover:scale-105
+                                    ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} `} style={{transitionDelay : `${index * 200 + 300}ms`}}>
                                         <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center
                                         justify-center group-hover:bg-green-500 transition-all duration-300
                                         group-hover:rotate-6">
@@ -79,7 +98,8 @@ export default function Contact(){
                             })
                             }
                         </div>
-                        <div className={`pt-8 transition-all duration-1000 delay-900`}>
+                        <div className={`pt-8 transition-all duration-1000 delay-900
+                            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                             <h4 className="text-lg font-semibold text-white mb-4">
                                 Follow me
                             </h4>
@@ -97,7 +117,64 @@ export default function Contact(){
                         </div>
                     </div>
                     {/* Contact form*/}
-                    <div className=""></div>
+                    <div className={`${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
+                        transition-all duration-1000 delay-300 `}>
+                        <div className="bg-slate-900 p-8 rounded-2xl border
+                        border-slate-700 hover:bg-green-500/50 transition-all duration-300">
+                            <h3 className="text-2xl font-bold text-white ">
+                                Send a message
+                            </h3>
+                            <form>
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <div className="group">
+                                        <label className="block text-sm font-semibold text-gray-300
+                                        mb-2 group-hover:text-green-300 transition-all duration-300">
+                                            Full name
+                                        </label>
+                                        <input type="text" id="name" name="name" className="w-full bg-slate-700
+                                        border border-slate-700 rounded-lg px-4 py-3 text-white placeholder:text-gray-200 
+                                        y-4 focus:outline-none focus:ring-2 focus:ring-green-500
+                                        focus:border-transparent transition-300 hover:border-green-50" placeholder="Your name" required />
+                                    </div>
+                                    <div className="group">
+                                        <label className="block text-sm font-semibold text-gray-300
+                                        mb-2 group-hover:text-green-300 transition-all duration-300">
+                                            Email
+                                        </label>
+                                        <input type="text" id="mail" name="mail" className="w-full bg-slate-700
+                                        border border-slate-700 rounded-lg px-4 py-3 text-white placeholder:text-gray-200 
+                                        y-4 focus:outline-none focus:ring-2 focus:ring-green-500
+                                        focus:border-transparent transition-300 hover:border-green-50" placeholder="Your mail" required />
+                                    </div>
+                                </div>
+                                <div className="group mt-5">
+                                    <label className="block text-sm font-semibold text-gray-300
+                                        mb-2 group-hover:text-green-300 transition-all duration-300">
+                                            Subjet
+                                    </label>
+                                    <input type="text" id="message" name="message" className="w-full bg-slate-700
+                                        border border-slate-700 rounded-lg px-4 py-3 text-white placeholder:text-gray-200 
+                                        y-4 focus:outline-none focus:ring-2 focus:ring-green-500
+                                        focus:border-transparent transition-300 hover:border-green-50" placeholder="Project discussion" required /> 
+                                </div>
+                                <div className="group mt-5">
+                                    <label className="block text-sm font-semibold text-gray-300
+                                        mb-2 group-hover:text-green-300 transition-all duration-300">
+                                            Message
+                                    </label>
+                                    <textarea type="text" id="msg" name="msg" className="w-full bg-slate-700
+                                        border border-slate-700 rounded-lg px-4 py-3 text-white placeholder:text-gray-200 
+                                        y-4 focus:outline-none focus:ring-2 focus:ring-green-500
+                                        focus:border-transparent transition-300 hover:border-green-50" placeholder=" tell me about your project" required /> 
+                                </div>
+                                <button className="mt-5 w-full bg-green-600 text-white px-4 py-4 rounde-lg
+                                hover:bg-green-700 transition-all duration-300 font-semibold flex items-center
+                                justify-center gap-2 shadow-lg hover:shadow-xl hover:scale-105 group">
+                                    Send Message <Send className="w-5 h-5 transition-all group-hover:translate-x-1 group-hover:translate-y-1"/>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

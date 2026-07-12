@@ -45,7 +45,7 @@ export default function Experience(){
                 <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-600/10 rounded-full
                 blur-3xl"></div>
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-                w-full h-full bg-gradient-to-r from-transparent via-green-600/5 to-transparent"></div>
+                w-full h-full bg-linear-to-r from-transparent via-green-600/5 to-transparent"></div>
             </div>
             <div className="container mx-auto px-6 relative z-10">
                 <div className="text-center mb-16">
@@ -62,10 +62,10 @@ export default function Experience(){
                 <div className="max-w-5xl mx-auto">
                     <div className="relative">
                         {/* Animated timeline */}
-                        <div className="absolute left-8 md:left-1/2 transform md:-translate-1/2 absolute left-8 md:left-1/2 inset-y-0 w-1 bg-slate-700 rounded-full">
-                            <div className={`w-full bg-gradient-to-b from-green-500 via-green-400
+                        <div className=" md:left-1/2 transform md:-translate-1/2 absolute left-8  inset-y-0 w-1 bg-slate-700 rounded-full">
+                            <div className={`w-full bg-linear-to-b from-green-500 via-green-400
                                 to-green-300 rounded-full transition-all duration-300 ease-out`}>
-                                    <div className="w-full h-full bg-gradient-to-b from-green-500 to-green-300"></div>
+                                    <div className="w-full h-full bg-linear-to-b from-green-500 to-green-300"></div>
                                 </div>
                         </div>
                         {experiences.map((expert,index)=> {

@@ -62,7 +62,7 @@ export default function Skills(){
                 <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-600/10 rounded-full
                 blur-3xl"></div>
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-                w-full h-full bg-gradient-to-r from-transparent via-green-600/5 to-transparent"></div>
+                w-full h-full bg-linear-to-r from-transparent via-green-600/5 to-transparent"></div>
             </div>
             <div className="container mx-auto px-6 relative z-10">
                 <div className="grid lg:grid-cols-2 gap-16">
@@ -130,7 +130,7 @@ export default function Skills(){
                                             </span>
                                         </div>
                                         <div className="w-full bg-slate-700 rounded-full h-2 overflow-hidden">
-                                            <div className="bg-gradient-to-r from-green-500 to-green-400 h-2 rounded-full
+                                            <div className="bg-linear-to-r from-green-500 to-green-400 h-2 rounded-full
                                             transition-all duration-1000 ease-out relative" style={{width: `${animated[skill.name] || 0}%`}}>
                                                 <div className="absolute inset-0 bg-white/20 "></div>
                                             </div>

@@ -24,7 +24,7 @@ export default function About(){
                 <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-600/10 rounded-full
                 blur-3xl"></div>
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-                w-full h-full bg-gradient-to-r from-transparent via-green-600/5 to-transparent"></div>
+                w-full h-full bg-linear-to-r from-transparent via-green-600/5 to-transparent"></div>
             </div>
             <div className="container mx-auto px-6 py-4">
                 <div className="container px-6 relative z-10">
@@ -37,7 +37,7 @@ export default function About(){
                                     group-hover:border-green-400 transition-all duration-1000">
                                         <img src={Mohamed} alt="" className="
                                         w-full rounded-xl transition-all duration-500 group-hover:scale-105"/>
-                                        <div className='absolute inset-2 bg-gradient-to-tr from-green-600/10 to-transparent rounded-xl opacity-0 
+                                        <div className='absolute inset-2 bg-linear-to-tr from-green-600/10 to-transparent rounded-xl opacity-0 
                                         group-hover:opacity-100 transition-all duration-500'></div>
                                         {/* Floated animation*/}
                                         <div className='absolute -top-6 right-6 w-12 h-12 bg-red-600/20 rounded '></div>

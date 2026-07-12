@@ -1,6 +1,6 @@
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-
+import Image from "./image/CV.pdf"
 
 
 
@@ -61,7 +61,9 @@ export default function Header (){
                     </nav>
                     <button className="hidden md:flex item-center gap-2 bg-green-600 text-white py-2.5 rounded-lg hover:bg-red-600 transition-all duration-200 font-medium
                     shadow-lg hover:shadow-xl hover:scale-105">
-                        Download CV now
+                        <a href={Image} download="cv" >
+                            Download CV
+                        </a>
                     </button>
                     {/* Mobile Menu */}
                     <button className="text-white md:hidden" onClick={()=> setIsmeuOpen(!isMenuOpen)}>
@@ -79,7 +81,9 @@ export default function Header (){
                     
                     <button className="mt-4 w-full flex items-center justify-center gap-2 bg-green-500
                     text-white px-6 py-2.5 rounded-lg hover:bg-green-700 transition-all duration-300">
-                        Download CV now
+                        <a href={Image} download="cv" >
+                            Download CV
+                        </a>
                     </button>
                 </nav>
                 )}

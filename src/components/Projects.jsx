@@ -91,7 +91,8 @@ export default function Projects(){
                             <div className={`group bg-slate-900 rounded-xl shadow-md hover:shadow-lg 
                             transition-all duration-1000 delay-700 overflow-hidden border border-slate-700 hover:border-green-500 
                             hover:scale-105
-                            ${isVisible ? "opacity-100 translate-y-0":'opacity-0 translate-y-10'}`} style={{transitionDelay: `${(index * 3) * 150}ms`}}>
+                            ${isVisible ? "opacity-100 translate-y-0":'opacity-0 translate-y-10'}`} style={{transitionDelay: `${(index * 3) * 150}ms`}}
+                            key={index}>
                                 <div className="relative overflow-hidden">
                                     <img src={proj.image} alt={proj.title} className='w-full h-70 object-cover group-hover:scale-105
                                     transition-all duration-300'/>

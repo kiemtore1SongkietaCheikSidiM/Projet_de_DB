@@ -70,7 +70,7 @@ export default function Experience(){
                         </div>
                         {experiences.map((expert,index)=> {
                             return (
-                                <div
+                                <div key={index}
                                 className={`experience-item relative flex mb-20 transition-all duration-700
                                  ${isVisibleItem.includes(index)
                                  ? 'opacity-100 translate-y-0'

@@ -1,10 +1,28 @@
 import { Github, Linkedin, Mail, MapPin, Phone, Send, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import emailjs from '@emailjs/browser'
 
 
-
+const service = import.meta.env.VITE_serviceID
+const template = import.meta.env.VITE_template
+const key = import.meta.env.VITE_Key
 export default function Contact(){
    const [isVisible, setIsVisible] = useState(false)
+   const form = useRef()
+
+   const SendEmail = (e)=>{
+    e.preventDefault()
+    emailjs.sendForm(service, template, form.current, {
+        publicKey: key,
+      })
+      .then(()=>{
+        console.log("Succes de fou")
+      },
+    (error)=>{
+        console.log(error)
+        console.log("Message:",error.text)
+    })
+   }
    useEffect(() =>{
     const observer = new IntersectionObserver(
         ([entry]) =>{
@@ -108,7 +126,7 @@ export default function Contact(){
                                     return (
                                         <a href="#" className={`w-12 h-12 bg-slate-900 rounded-lg flex items-center
                                         justify-center hover:bg-green-600 hover:text-white transition-all duration-300
-                                        group border border-slate-700 hover:border-green-700 hover:scale-110 hover:rotate-6`}>
+                                        group border border-slate-700 hover:border-green-700 hover:scale-110 hover:rotate-6`} key={index}>
                                             <Icone className="w-5 h-5"/>
                                         </a>
                                     )
@@ -124,24 +142,28 @@ export default function Contact(){
                             <h3 className="text-2xl font-bold text-white ">
                                 Send a message
                             </h3>
-                            <form>
+                            <form ref={form} onSubmit={SendEmail}>
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div className="group">
                                         <label className="block text-sm font-semibold text-gray-300
                                         mb-2 group-hover:text-green-300 transition-all duration-300">
                                             Full name
                                         </label>
-                                        <input type="text" id="name" name="name" className="w-full bg-slate-700
+                                        <input type="text" id="name"
+                                         name="user_name" 
+                                         className="w-full bg-slate-700
                                         border border-slate-700 rounded-lg px-4 py-3 text-white placeholder:text-gray-200 
                                         y-4 focus:outline-none focus:ring-2 focus:ring-green-500
-                                        focus:border-transparent transition-300 hover:border-green-50" placeholder="Your name" required />
+                                        focus:border-transparent transition-300 hover:border-green-50" 
+                                        placeholder="Your name" required />
                                     </div>
                                     <div className="group">
                                         <label className="block text-sm font-semibold text-gray-300
                                         mb-2 group-hover:text-green-300 transition-all duration-300">
                                             Email
                                         </label>
-                                        <input type="text" id="mail" name="mail" className="w-full bg-slate-700
+                                        <input type="text" id="mail" 
+                                        name="user_email" className="w-full bg-slate-700
                                         border border-slate-700 rounded-lg px-4 py-3 text-white placeholder:text-gray-200 
                                         y-4 focus:outline-none focus:ring-2 focus:ring-green-500
                                         focus:border-transparent transition-300 hover:border-green-50" placeholder="Your mail" required />
@@ -152,7 +174,7 @@ export default function Contact(){
                                         mb-2 group-hover:text-green-300 transition-all duration-300">
                                             Subjet
                                     </label>
-                                    <input type="text" id="message" name="message" className="w-full bg-slate-700
+                                    <input type="text" id="message" name="subject" className="w-full bg-slate-700
                                         border border-slate-700 rounded-lg px-4 py-3 text-white placeholder:text-gray-200 
                                         y-4 focus:outline-none focus:ring-2 focus:ring-green-500
                                         focus:border-transparent transition-300 hover:border-green-50" placeholder="Project discussion" required /> 
@@ -162,12 +184,12 @@ export default function Contact(){
                                         mb-2 group-hover:text-green-300 transition-all duration-300">
                                             Message
                                     </label>
-                                    <textarea type="text" id="msg" name="msg" className="w-full bg-slate-700
+                                    <textarea type="text" id="msg" name="message" className="w-full bg-slate-700
                                         border border-slate-700 rounded-lg px-4 py-3 text-white placeholder:text-gray-200 
                                         y-4 focus:outline-none focus:ring-2 focus:ring-green-500
                                         focus:border-transparent transition-300 hover:border-green-50" placeholder=" tell me about your project" required /> 
                                 </div>
-                                <button className="mt-5 w-full bg-green-600 text-white px-4 py-4 rounde-lg
+                                <button type="submit" className="mt-5 w-full bg-green-600 text-white px-4 py-4 rounde-lg
                                 hover:bg-green-700 transition-all duration-300 font-semibold flex items-center
                                 justify-center gap-2 shadow-lg hover:shadow-xl hover:scale-105 group">
                                     Send Message <Send className="w-5 h-5 transition-all group-hover:translate-x-1 group-hover:translate-y-1"/>

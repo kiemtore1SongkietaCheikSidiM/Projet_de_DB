@@ -75,7 +75,7 @@ export default function Header (){
                      <nav className="md:hidden mt-4 pb-4 border-t border-slate-800 pt-4 bg-slate-800
                 rounded-lg shadow-lg">
                     {navItems.map((item)=>{
-                        return <button className="block w-full text-left py-6 px-4 text-gray-300 hover:text-green-400 hover:bg-slate-700
+                        return <button key={index} className="block w-full text-left py-6 px-4 text-gray-300 hover:text-green-400 hover:bg-slate-700
                         transition-all duration-300 rounded-lg">{item.name}</button>
                     })}
                     

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Mohamed from './mohamed.jpg'
+import Mohamed from './image/mohamed.jpg'
 import { useEffect } from 'react'
 
 

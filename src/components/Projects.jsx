@@ -29,7 +29,8 @@ export default function Projects(){
             image: Ai,
             technologies: ['Html,css,js','Flask','Sqlite','Machine learning'],
             Categories : "Machine Learning Web",
-            features: true
+            features: true,
+            lien:"https://machine-learning-3-5soc.onrender.com/"
         },
          {
             id:2,
@@ -38,16 +39,18 @@ export default function Projects(){
             image: port,
             technologies: ['React/Vite','TaiwindCss','Javascript'],
             Categories : "Machine Learning Web",
-            features: true
+            features: true,
+            lien:"https://web-mohamed.netlify.app/"
         },
          {
             id:3,
-            title: "Lapin management",
-            description: "A chatbot to learn all the questions of ladies about the babies' healthy and get automatically an response",
+            title: "Travel Explorer",
+            description: "Un site qui permet de faire une recherche des pays du monde de faire de la conversion des monais rechercher les monument et connaitre la meteo des pays",
             image:lapin,
-            technologies: ['React/Vite','TaiwindCss','Javascript','Flask','PostgreSql'],
-            Categories : "Full stack",
-            features: true
+            technologies: ['React/Vite','TaiwindCss','Typescript','Firbase','API rest'],
+            Categories : "Frontend",
+            features: true,
+            lien:"https://travelexplorerc.netlify.app/"
         },
          {
             id:4,
@@ -56,7 +59,8 @@ export default function Projects(){
             image:book,
             technologies: ['Html,css,js','Django','Sqlite'],
             Categories : "Full stack",
-            features: true
+            features: true,
+            lien: ""
         }
     ]
 
@@ -94,6 +98,7 @@ export default function Projects(){
                             ${isVisible ? "opacity-100 translate-y-0":'opacity-0 translate-y-10'}`} style={{transitionDelay: `${(index * 3) * 150}ms`}}
                             key={index}>
                                 <div className="relative overflow-hidden">
+                                    <a href={proj.lien}>
                                     <img src={proj.image} alt={proj.title} className='w-full h-70 object-cover group-hover:scale-105
                                     transition-all duration-300'/>
                                     <div className='absolute top-3 right-3 flex gap-2 opacity-0
@@ -109,6 +114,7 @@ export default function Projects(){
                                             <ExternalLink className='w-4 h-4 text-gray-600'/>
                                         </button>
                                     </div>
+                                    </a>
                                 </div>
                                 <div className='p-6'>
                                     <div className='flex items-center justify-between mb-3'>
